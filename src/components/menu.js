@@ -1,7 +1,9 @@
-import {createElement} from '../helpers';
+import AbstractComponent from './abstract-component';
 
-export default class Menu {
+export default class Menu extends AbstractComponent {
   constructor() {
+    super();
+
     this._itemsData = [
       {
         id: `new-task`,
@@ -16,13 +18,12 @@ export default class Menu {
         name: `STATISTICS`
       },
     ];
-
-    this._element = createElement(this._getTmpl());
   }
 
   _getItems() {
     return this._itemsData.reduce((prev, item) => {
       const {id, name} = item;
+
       return (
         `${prev}<input
           type="radio"
@@ -44,13 +45,5 @@ export default class Menu {
         ${this._getItems()}
       </section>`
     );
-  }
-
-  getElement() {
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

@@ -1,7 +1,9 @@
-import {createElement} from '../helpers';
+import AbstractComponent from './abstract-component';
 
-export default class Sort {
+export default class Sort extends AbstractComponent {
   constructor() {
+    super();
+
     this._itemsData = [
       {
         id: `default`,
@@ -16,13 +18,12 @@ export default class Sort {
         name: `SORT BY DATE down`
       },
     ];
-
-    this._element = createElement(this._getTmpl());
   }
 
   _getItems() {
     return this._itemsData.reduce((prev, item) => {
       const {id, name} = item;
+
       return (
         `${prev}<a
           href="#"
@@ -41,13 +42,5 @@ export default class Sort {
         ${this._getItems()}
       </div>`
     );
-  }
-
-  getElement() {
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

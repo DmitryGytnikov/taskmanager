@@ -1,11 +1,11 @@
-import {createElement} from '../helpers';
+import AbstractComponent from './abstract-component';
 
-export default class Filter {
+export default class Filter extends AbstractComponent {
   constructor({items, currentFilter}) {
+    super();
+
     this._items = items;
     this._currentFilter = currentFilter;
-
-    this._element = createElement(this._getTmpl());
   }
 
   _getInputMarkup({title, count}) {
@@ -37,13 +37,5 @@ export default class Filter {
         ${itemsMarkup}
       </section>`
     );
-  }
-
-  getElement() {
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
